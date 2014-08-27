@@ -1,0 +1,153 @@
+Season,Week,Opponent,Location,NCAC,Playoff,Scored,Allowed,Differential,Result
+2013,1,Washington & Jefferson,H,N,N,21,58,-37,L
+2013,2,Oberlin,H,Y,N,39,21,18,W
+2013,3,Hiram,A,Y,N,38,24,14,W
+2013,4,Wabash,H,Y,N,14,48,-34,L
+2013,5,Allegheny,A,Y,N,33,16,17,W
+2013,6,Wittenberg,A,Y,N,39,66,-27,L
+2013,7,Denison,H,Y,N,43,21,22,W
+2013,8,DePauw,A,Y,N,27,24,3,W
+2013,9,Kenyon,A,Y,N,24,14,10,W
+2013,10,Ohio Wesleyan,H,Y,N,28,27,1,W
+2012,1,Allegheny,H,N,N,14,17,-3,L
+2012,2,Saint Vincent,A,N,N,27,21,6,W
+2012,3,Wittenberg,H,Y,N,7,17,-10,L
+2012,4,Denison,A,Y,N,22,30,-8,L
+2012,5,Case Western Reserve,A,N,N,28,31,-3,L
+2012,6,Hiram,H,Y,N,45,14,31,W
+2012,7,Wabash,A,Y,N,0,30,-30,L
+2012,8,DePauw,H,Y,N,16,27,-11,L
+2012,9,Kenyon,H,Y,N,17,21,-4,L
+2012,10,Ohio Wesleyan,A,Y,N,12,36,-24,L
+2011,1,Baldwin-Wallace,H,N,N,0,23,-23,L
+2011,2,Wabash,H,Y,N,7,19,-12,L
+2011,3,Oberlin,A,Y,N,14,3,11,W
+2011,4,Ohio Wesleyan,H,Y,N,10,6,4,W
+2011,5,Denison,H,Y,N,13,27,-14,L
+2011,6,Washington-St. Louis,A,N,N,20,24,-4,L
+2011,7,Case Western Reserve,H,N,N,21,24,-3,L
+2011,8,Hiram,A,Y,N,35,14,21,W
+2011,9,Kenyon,A,Y,N,31,3,28,W
+2011,10,Wittenberg,A,Y,N,21,42,-21,L
+2010,1,Baldwin-Wallace,A,N,N,14,38,-24,L
+2010,2,Wabash,A,Y,N,17,21,-4,L
+2010,3,Oberlin,H,Y,N,31,14,17,W
+2010,4,Ohio Wesleyan,A,N,N,22,13,9,W
+2010,5,Denison,A,Y,N,38,28,10,W
+2010,6,Washington-St. Louis,H,N,N,13,14,-1,L
+2010,7,Case Western Reserve,A,N,N,14,28,-14,L
+2010,8,Hiram,H,Y,N,62,0,62,W
+2010,9,Kenyon,H,Y,N,31,6,25,W
+2010,10,Wittenberg,H,Y,N,17,22,-5,L
+2009,1,Waynesburg,H,N,N,39,42,-3,L
+2009,2,Ohio Wesleyan,A,Y,N,37,20,17,W
+2009,3,Denison,H,Y,N,26,7,19,W
+2009,4,Earlham,A,Y,N,49,3,46,W
+2009,5,Case Western Reserve,H,N,N,32,53,-21,L
+2009,6,Washington-St. Louis,A,N,N,24,20,4,W
+2009,7,Wabash,H,Y,N,27,37,-10,L
+2009,8,Allegheny,A,Y,N,21,14,7,W
+2009,9,Oberlin,H,Y,N,52,7,45,W
+2009,10,Wittenberg,A,Y,N,6,42,-36,L
+2008,1,Waynesburg,A,N,N,27,6,21,W
+2008,2,Ohio Wesleyan,H,Y,N,20,2,18,W
+2008,3,Denison,A,Y,N,21,10,11,W
+2008,4,Earlham,H,Y,N,16,14,2,W
+2008,5,Case Western Reserve,A,N,N,7,28,-21,L
+2008,6,Washington-St. Louis,H,N,N,38,13,25,W
+2008,7,Wabash,A,Y,N,24,45,-21,L
+2008,8,Allegheny,H,Y,N,35,21,14,W
+2008,9,Oberlin,A,Y,N,27,7,20,W
+2008,10,Wittenberg,H,Y,N,27,6,21,W
+2007,1,John Carroll,A,N,N,0,24,-24,L
+2007,2,Waynesburg,H,N,N,35,45,-10,L
+2007,3,Case Western Reserve,A,N,N,17,30,-13,L
+2007,4,Wittenberg,A,Y,N,7,58,-51,L
+2007,5,Ohio Wesleyan,H,Y,N,13,9,4,W
+2007,6,Hiram,H,Y,N,24,17,7,W
+2007,7,Allegheny,A,Y,N,20,27,-7,L
+2007,8,Wabash,H,Y,N,10,21,-11,L
+2007,9,Earlham,A,Y,N,66,14,52,W
+2007,10,Kenyon,H,Y,N,49,13,36,W
+2006,1,John Carroll,H,N,N,30,22,8,W
+2006,2,Waynesburg,A,N,N,31,10,21,W
+2006,3,Case Western Reserve,H,N,N,21,7,14,W
+2006,4,Wittenberg,H,Y,N,21,14,7,W
+2006,5,Ohio Wesleyan,A,Y,N,24,0,24,W
+2006,6,Hiram,A,Y,N,52,0,52,W
+2006,7,Allegheny,H,Y,N,27,21,6,W
+2006,8,Wabash,A,Y,N,10,20,-10,L
+2006,9,Earlham,H,Y,N,38,31,7,W
+2006,10,Kenyon,A,Y,N,41,13,28,W
+2005,1,Muskingum,A,N,N,13,10,3,W
+2005,2,MacMurray,H,N,N,37,0,37,W
+2005,3,Case Western Reserve,A,N,N,38,21,17,W
+2005,4,Allegheny,A,Y,N,37,34,3,W
+2005,5,Kenyon,H,Y,N,21,24,-3,L
+2005,6,Wabash,H,Y,N,10,44,-34,L
+2005,7,Oberlin,A,Y,N,20,19,1,W
+2005,8,Hiram,H,Y,N,59,17,42,W
+2005,9,Wittenberg,A,Y,N,0,45,-45,L
+2005,10,Ohio Wesleyan,H,Y,N,7,21,-14,L
+2004,1,Muskingum,H,N,N,27,6,21,W
+2004,2,Grove City,A,N,N,28,13,15,W
+2004,3,Case Western Reserve,H,N,N,49,7,42,W
+2004,4,Allegheny,H,Y,N,35,13,22,W
+2004,5,Kenyon,A,Y,N,84,21,63,W
+2004,6,Wabash,A,Y,N,33,30,3,W
+2004,7,Oberlin,H,Y,N,59,13,46,W
+2004,8,Hiram,A,Y,N,59,0,59,W
+2004,9,Wittenberg,H,Y,N,64,58,6,W
+2004,10,Ohio Wesleyan,A,Y,N,24,6,18,W
+2004,11,Aurora,H,N,Y,41,34,7,W
+2004,12,Carthage,H,N,Y,7,14,-7,L
+2003,1,Hope,H,N,N,45,36,9,W
+2003,2,Bethany,A,N,N,69,7,62,W
+2003,3,Case Western Reserve,A,N,N,62,33,29,W
+2003,4,Ohio Wesleyan,H,Y,N,37,7,30,W
+2003,5,Oberlin,A,Y,N,7,14,-7,L
+2003,6,Allegheny,H,Y,N,20,26,-6,L
+2003,7,Earlham,A,Y,N,52,24,28,W
+2003,8,Wabash,H,Y,N,23,7,16,W
+2003,9,Denison,H,Y,N,59,3,56,W
+2003,10,Wittenberg,A,Y,N,31,35,-4,L
+2002,1,Hope,A,N,N,14,9,5,W
+2002,2,Bethany,H,N,N,38,28,10,W
+2002,3,Case Western Reserve,H,N,N,27,22,5,W
+2002,4,Ohio Wesleyan,A,Y,N,37,14,23,W
+2002,5,Oberlin,H,Y,N,49,10,39,W
+2002,6,Allegheny,A,Y,N,21,7,14,W
+2002,7,Earlham,H,Y,N,49,20,29,W
+2002,8,Wabash,A,Y,N,22,42,-20,L
+2002,9,Denison,H,Y,N,56,7,49,W
+2002,10,Wittenberg,H,Y,N,9,14,-5,L
+2001,1,Kalamazoo,H,N,N,37,39,-2,L
+2001,2,Kenyon,H,Y,N,59,10,49,W
+2001,3,Ohio Wesleyan,A,Y,N,30,36,-6,L
+2001,4,Wabash,A,Y,N,7,35,-28,L
+2001,5,Wittenberg,H,Y,N,13,47,-34,L
+2001,6,Ursinus,A,N,N,14,53,-39,L
+2001,7,Oberlin,H,Y,N,28,0,28,W
+2001,8,Allegheny,A,Y,N,7,28,-21,L
+2001,9,Hiram,H,Y,N,28,10,18,W
+2001,10,Grove City,A,N,N,6,0,6,W
+2000,1,Kalamazoo,A,N,N,32,16,16,W
+2000,2,Grove City,H,N,N,27,7,20,W
+2000,3,Kenyon,A,Y,N,23,0,23,W
+2000,4,Ohio Wesleyan,H,Y,N,21,14,7,W
+2000,5,Wabash,H,Y,N,15,20,-5,L
+2000,6,Wittenberg,A,Y,N,26,42,-16,L
+2000,7,Ursinus,H,N,N,7,31,-24,L
+2000,8,Oberlin,A,Y,N,34,0,34,W
+2000,9,Allegheny,H,Y,N,15,43,-28,L
+2000,10,Hiram,A,Y,N,33,14,19,W
+1999,1,Grove City,A,N,N,31,28,3,W
+1999,2,Kalamazoo,,N,N,23,0,23,W
+1999,3,Ohio Wesleyan,,Y,N,11,14,-3,L
+1999,4,Kenyon,H,Y,N,45,8,37,W
+1999,5,Allegheny,,Y,N,13,10,3,W
+1999,6,Oberlin,H,Y,N,71,0,71,W
+1999,7,Earlham,,Y,N,46,6,40,W
+1999,8,Denison,,Y,N,45,0,45,W
+1999,9,Case Western Reserve,,N,N,31,27,4,W
+1999,10,Wittenberg,H,Y,N,14,28,-14,L
