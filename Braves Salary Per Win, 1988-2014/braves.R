@@ -94,18 +94,27 @@ salarywins <- mutate(salarywins, ratio = Salary/W)
 salarywins$Team <- as.factor(as.character(salarywins$Team))
 
 ### Plots
+# Plot 1: 1988-2014
 ggplot(salarywins, aes(x=Year, y=ratio, group=Team, color=Team)) +
-    geom_line() +
+    geom_line(size=2, alpha = 4/5) +
     scale_x_continuous(breaks=seq(1988,2014,5)) +
-    labs(x="", y="Salary per Win", 
+    scale_y_continuous(labels = c(0, 0.5, 1, 1.5, 2, 2.5)) +
+    scale_color_manual(values=c("Red","#1E90FF","darkred","Black","Orange","#C41E3A", "darkred"),
+                       name="Teams",
+                       labels=c("ATL","LAD","MON","PIT","SFG","STL","WSN")) +
+    labs(x="", y="Salary per Win (millions $)", 
          title="Team Salary Per Win, 1988-2014:\nAtlanta Braves vs. 2014 National League Playoff Teams") +
     theme_classic()
 
-# Issues:
-1. Expos/Nationals
-2. Color of lines
-3. Y-axis (Turn into dollars and millions (1=$1,000,000))
-4. Second plot that just focuses on Frank Wren years (2008-2014)
-    4a. Note = He was hired in October 2007, so 2008 is his first team
-
-
+# Plot 2: Frank Wren Years (2008-2014)
+ggplot(salarywins, aes(x=Year, y=ratio, group=Team, color=Team)) +
+    geom_line(size=2, alpha = 3/4) +
+    scale_x_continuous(limits = c(2005, 2014), breaks=seq(2005,2014,1)) +
+    geom_vline(xintercept=2008, linetype="dashed") + 
+    scale_y_continuous(labels = c(0, 0.5, 1, 1.5, 2, 2.5)) +
+    scale_color_manual(values=c("Red","#1E90FF","darkred","Black","Orange","#C41E3A", "darkred"),
+                       name="Teams",
+                       labels=c("ATL","LAD","MON","PIT","SFG","STL","WSN")) +
+    labs(x="", y="Salary per Win (millions $)", 
+         title="Team Salary Per Win, 2008-2014: The Frank Wren Years") +
+    theme_classic()
