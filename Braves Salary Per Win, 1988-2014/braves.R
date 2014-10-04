@@ -1,10 +1,11 @@
 ### Calculate Atlanta Braves Salary per Win, 1988-2014
 
-## Load RCurl, XML, reshape2, dplyr, and ggplot2 packages
+## Load RCurl, XML, reshape2, dplyr, scales, and ggplot2 packages
 library("RCurl", lib.loc="/Library/Frameworks/R.framework/Versions/3.0/Resources/library")
 library("XML", lib.loc="/Library/Frameworks/R.framework/Versions/3.0/Resources/library")
 library("reshape2", lib.loc="/Library/Frameworks/R.framework/Versions/3.0/Resources/library")
 library("dplyr", lib.loc="/Library/Frameworks/R.framework/Versions/3.0/Resources/library")
+library("scales", lib.loc="/Library/Frameworks/R.framework/Versions/3.0/Resources/library")
 library("ggplot2", lib.loc="/Library/Frameworks/R.framework/Versions/3.0/Resources/library")
 
 # 2014 NL Playoff Teams
@@ -90,8 +91,52 @@ salarywins <- cbind(team_br, Salary)
 # Add Salary/Wins ratio
 salarywins <- mutate(salarywins, ratio = Salary/W)
 
+salarywins <- salarywins %>%
+    mutate(ratio_81 = Salary/81) %>%
+    mutate(ratio_diff = ratio-ratio_81) %>%
+    mutate(W_81diff = W-81)
+
+# Team Names Have Strange Characters in Them
+salarywins$Team <- gsub("[^[:alnum:]]","",salarywins$Team)
+
 # Format Year column into Factor
 salarywins$Team <- as.factor(as.character(salarywins$Team))
+
+# Create CSV
+setwd("~/Documents/Blog/Living-in-the-Sprawl/Braves Salary Per Win, 1988-2014")
+write.csv(salarywins, file="SalaryPerWins_NL.csv")
+
+# If ratio_diff is positive, ratio > ratio_81
+# If ratio_diff is negative, ratio < ratio_81
+
+# If W_81diff is positive, team is x games over .500
+
+filter(salarywins, Team=="AtlantaBraves")  %>%
+    ggplot(aes(x=Year, y=ratio_diff, group=Team, color=Team)) +
+        geom_line(size=3) +
+        geom_line(size=2, color="blue") +
+        scale_x_continuous(breaks=seq(1988,2014,5)) +
+        scale_y_continuous(labels = dollar) +
+        geom_hline(yintercept=0, linetype="dashed") + 
+        labs(x="", y="", 
+             title="Atlanta's Actual Salary Value and a .500 Team") +
+        guides(color=F) +
+        theme_classic()
+
+ggplot(salarywins, aes(x=W_81diff, y=ratio_diff, color=Team, size=2)) +
+    geom_point(alpha=3/5) +
+    geom_hline(yintercept=0, linetype="dashed") +
+    geom_vline(xintercept=0, linetype="dashed") +
+    scale_y_continuous(labels = dollar) +
+    scale_color_manual(values=c("Red","#1E90FF","darkred","Black","Orange","#C41E3A", "darkred"),
+                       name="Teams",
+                       labels=c("ATL","LAD","MON","PIT","SFG","STL","WSN")) +
+    guides(size=F) +
+    theme_classic()
+
+filter(salarywins, Team=="AtlantaBraves")  %>%
+    ggplot(aes(x=W_81diff, y=ratio_diff)) +
+    geom_point(aes(size=Year))
 
 ### Plots
 # Plot 1: 1988-2014
