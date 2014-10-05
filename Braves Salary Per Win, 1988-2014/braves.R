@@ -113,7 +113,8 @@ write.csv(salarywins, file="SalaryPerWins_NL.csv")
 # If W_81diff is positive, team is x games over .500
 
 ### Plots
-# Plot 1: 1988-2014
+# Plot 1: 1988-2014, Salary Per Win
+png("plot1.png", height = 350, width = 550)
 ggplot(salarywins, aes(x=Year, y=ratio, group=Team, color=Team)) +
     geom_line(size=2, alpha = 4/5) +
     scale_x_continuous(breaks=seq(1988,2014,5)) +
@@ -122,10 +123,12 @@ ggplot(salarywins, aes(x=Year, y=ratio, group=Team, color=Team)) +
                        name="Teams",
                        labels=c("ATL","LAD","MON","PIT","SFG","STL","WSN")) +
     labs(x="", y="Salary per Win (millions $)", 
-         title="Team Salary Per Win, 1988-2014:\nAtlanta Braves vs. 2014 National League Playoff Teams") +
+         title="Salary Per Win, 1988-2014:\nAtlanta Braves & 2014 National League Playoff Teams") +
     theme_classic()
+dev.off()
 
 # Plot 2
+png("plot2.png", height = 300, width = 500)
 ggplot(salarywins, aes(x=W_81diff, y=ratio_diffpct, color=Team, size=2)) +
     geom_point(alpha=3/5) +
     geom_hline(yintercept=0, linetype="dashed") +
@@ -137,8 +140,10 @@ ggplot(salarywins, aes(x=W_81diff, y=ratio_diffpct, color=Team, size=2)) +
     labs(x="Wins Above and Below 81 Games", y="Salary/Win Ratio Comparison") +
     guides(size=F) +
     theme_classic()
+dev.off()
 
 # Plot 3
+png("plot3.png", height = 350, width = 550)
 filter(salarywins, Team=="AtlantaBraves")  %>%
     ggplot(aes(x=Year, y=ratio_diffpct, group=Team, color=Team)) +
     geom_line(size=3) +
@@ -150,3 +155,4 @@ filter(salarywins, Team=="AtlantaBraves")  %>%
          title="Atlanta Braves's Actual Salary Value versus a .500 Team") +
     guides(color=F) +
     theme_classic()
+dev.off()
