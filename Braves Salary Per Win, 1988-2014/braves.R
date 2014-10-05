@@ -94,7 +94,8 @@ salarywins <- mutate(salarywins, ratio = Salary/W)
 salarywins <- salarywins %>%
     mutate(ratio_81 = Salary/81) %>%
     mutate(ratio_diff = ratio-ratio_81) %>%
-    mutate(W_81diff = W-81)
+    mutate(W_81diff = W-81) %>%
+    mutate(ratio_diffpct = ((ratio_81-ratio)/ratio))
 
 # Team Names Have Strange Characters in Them
 salarywins$Team <- gsub("[^[:alnum:]]","",salarywins$Team)
@@ -111,33 +112,6 @@ write.csv(salarywins, file="SalaryPerWins_NL.csv")
 
 # If W_81diff is positive, team is x games over .500
 
-filter(salarywins, Team=="AtlantaBraves")  %>%
-    ggplot(aes(x=Year, y=ratio_diff, group=Team, color=Team)) +
-        geom_line(size=3) +
-        geom_line(size=2, color="blue") +
-        scale_x_continuous(breaks=seq(1988,2014,5)) +
-        scale_y_continuous(labels = dollar) +
-        geom_hline(yintercept=0, linetype="dashed") + 
-        labs(x="", y="", 
-             title="Atlanta's Actual Salary Value and a .500 Team") +
-        guides(color=F) +
-        theme_classic()
-
-ggplot(salarywins, aes(x=W_81diff, y=ratio_diff, color=Team, size=2)) +
-    geom_point(alpha=3/5) +
-    geom_hline(yintercept=0, linetype="dashed") +
-    geom_vline(xintercept=0, linetype="dashed") +
-    scale_y_continuous(labels = dollar) +
-    scale_color_manual(values=c("Red","#1E90FF","darkred","Black","Orange","#C41E3A", "darkred"),
-                       name="Teams",
-                       labels=c("ATL","LAD","MON","PIT","SFG","STL","WSN")) +
-    guides(size=F) +
-    theme_classic()
-
-filter(salarywins, Team=="AtlantaBraves")  %>%
-    ggplot(aes(x=W_81diff, y=ratio_diff)) +
-    geom_point(aes(size=Year))
-
 ### Plots
 # Plot 1: 1988-2014
 ggplot(salarywins, aes(x=Year, y=ratio, group=Team, color=Team)) +
@@ -151,15 +125,28 @@ ggplot(salarywins, aes(x=Year, y=ratio, group=Team, color=Team)) +
          title="Team Salary Per Win, 1988-2014:\nAtlanta Braves vs. 2014 National League Playoff Teams") +
     theme_classic()
 
-# Plot 2: Frank Wren Years (2008-2014)
-ggplot(salarywins, aes(x=Year, y=ratio, group=Team, color=Team)) +
-    geom_line(size=2, alpha = 3/4) +
-    scale_x_continuous(limits = c(2005, 2014), breaks=seq(2005,2014,1)) +
-    geom_vline(xintercept=2008, linetype="dashed") + 
-    scale_y_continuous(labels = c(0, 0.5, 1, 1.5, 2, 2.5)) +
+# Plot 2
+ggplot(salarywins, aes(x=W_81diff, y=ratio_diffpct, color=Team, size=2)) +
+    geom_point(alpha=3/5) +
+    geom_hline(yintercept=0, linetype="dashed") +
+    geom_vline(xintercept=0, linetype="dashed") +
+    scale_y_continuous(labels = percent) +
     scale_color_manual(values=c("Red","#1E90FF","darkred","Black","Orange","#C41E3A", "darkred"),
                        name="Teams",
                        labels=c("ATL","LAD","MON","PIT","SFG","STL","WSN")) +
-    labs(x="", y="Salary per Win (millions $)", 
-         title="Team Salary Per Win, 2008-2014: The Frank Wren Years") +
+    labs(x="Wins Above and Below 81 Games", y="Salary/Win Ratio Comparison") +
+    guides(size=F) +
+    theme_classic()
+
+# Plot 3
+filter(salarywins, Team=="AtlantaBraves")  %>%
+    ggplot(aes(x=Year, y=ratio_diffpct, group=Team, color=Team)) +
+    geom_line(size=3) +
+    geom_line(size=2, color="blue") +
+    scale_x_continuous(breaks=seq(1988,2014,5)) +
+    scale_y_continuous(labels = percent) +
+    geom_hline(yintercept=0, linetype="dashed") + 
+    labs(x="", y="Salary/Win Ratio Comparison", 
+         title="Atlanta Braves's Actual Salary Value versus a .500 Team") +
+    guides(color=F) +
     theme_classic()
