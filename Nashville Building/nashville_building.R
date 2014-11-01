@@ -1,3 +1,7 @@
+# Nashville Building Permits for New Residences Since May 2013
+# Data from Nashville's Open Data Portal
+# Accessed on Oct 21, 2014: https://data.nashville.gov/Development-and-Housing/Building-Permits/3h5w-q8b7
+
 setwd("~/Documents/Blog/Living-in-the-Sprawl/Nashville Building")
 
 nash <- read.csv("Nashville_Building_Permits.csv")
@@ -5,6 +9,7 @@ nash <- read.csv("Nashville_Building_Permits.csv")
 library("dplyr", lib.loc="/Library/Frameworks/R.framework/Versions/3.0/Resources/library")
 library("ggplot2", lib.loc="/Library/Frameworks/R.framework/Versions/3.0/Resources/library")
 library("reshape2", lib.loc="/Library/Frameworks/R.framework/Versions/3.0/Resources/library")
+library("ggmap", lib.loc="/Library/Frameworks/R.framework/Versions/3.0/Resources/library")
 
 ggplot(nash,aes(x=Permit.Type.Description, fill=Permit.Type.Description)) +
     geom_bar(stat="bin")
@@ -35,7 +40,7 @@ resnew$Lon <- replace(resnew$Lon,resnew$Lon==-79.76233604199967,-86.66595)
 geocode("Nashville, TN")
 geocode("Davidson County, TN")
 
-# Nashville, Zoom = 10
+# Plot 1: Nashville, Zoom = 10
 Nash10 <- get_map(location = c(lon = -86.78333, lat = 36.16667),
                   color = "color",
                   source = "google",
@@ -47,23 +52,27 @@ Nash10 <- ggmap(Nash10, extent = "device", legend = "topleft")
 Nash10 +
     stat_density2d(aes(x=Lon, y=Lat,fill = ..level..,alpha = ..level..),
                    geom = "polygon", data=resnew) +
-    guides(fill=F, alpha=F)
+    guides(fill=F,alpha=F) +
+    ggtitle("Map 1: Location of Nashville, TN, Building Permits for New Residences Since May 2013") +
+    theme(plot.title = element_text(size=11, face="bold"))
 
-# Nashville, Zoom = 12
+# Plot 2: Nashville, Zoom = 12
 Nash12 <- get_map(location = c(lon = -86.78333, lat = 36.16667),
                   color = "color",
                   source = "google",
                   maptype = "roadmap",
                   zoom = 12)
 
-Nash12 <- ggmap(Nash12, extent = "device", legend = "topleft")
+Nash12 <- ggmap(Nash12, extent = "device")
 
 Nash12 +
     stat_density2d(aes(x=Lon, y=Lat,fill = ..level..,alpha = ..level..),
                    geom = "polygon", data=resnew) +
+    ggtitle("Map 2: Closer Look at Nashville's New Residences Since 2013") +
+    theme(plot.title = element_text(size=12, face="bold")) +
     guides(fill=F, alpha=F)
 
-# East Nashville
+# Plot 3: East Nashville
 geocode("East Nashville, TN")
 #  lon      lat
 # -86.75972 36.17256
@@ -80,8 +89,6 @@ East <- ggmap(East, extent = "device")
 East +
     stat_density2d(aes(x=Lon, y=Lat,fill = ..level..,alpha = ..level..),
                    geom = "polygon", data=resnew) +
+    ggtitle("Map 3: East Nashville Building Permits for New Residences Since May 2013") +
+    theme(plot.title = element_text(size=12, face="bold")) +
     guides(fill=F, alpha=F)
-
-# New Commercial Building Permits
-comnew <- filter(nash, Permit.Type.Description=="BUILDING COMMERCIAL - NEW")
-
