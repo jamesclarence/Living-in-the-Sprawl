@@ -24,4 +24,7 @@ intersect(colnames(law1),colnames(law2)) # same columns between law1 and law2
 
 law <- rbind_all(list(law1,law2))
 
-write.csv(law, file="lawmakers.csv")
+# # remove 1st row of law 
+law <- law[-1,]
+
+write.csv(law, file="lawmakers.csv", row.names=F)

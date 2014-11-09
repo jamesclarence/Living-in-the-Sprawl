@@ -1,0 +1,52 @@
+Region,Region_Number,Division,Division_Number,State,State_Abbr
+NORTHEAST,1,New England,1,Connecticut,CT
+NORTHEAST,1,New England,1,Maine,ME
+NORTHEAST,1,New England,1,Massachusetts,MA
+NORTHEAST,1,New England,1,New Hampshire,NJ
+NORTHEAST,1,New England,1,Rhode Island,RI
+NORTHEAST,1,New England,1,Vermont,VT
+NORTHEAST,1,Middle Atlantic,2,New Jersey,NM
+NORTHEAST,1,Middle Atlantic,2,New York,NY
+NORTHEAST,1,Middle Atlantic,2,Pennsylvania,PA
+MIDWEST,2,East North Central,3,Illinois,IL
+MIDWEST,2,East North Central,3,Indiana,IN
+MIDWEST,2,East North Central,3,Michigan,MI
+MIDWEST,2,East North Central,3,Ohio,OH
+MIDWEST,2,East North Central,3,Wisconsin,WI
+MIDWEST,2,West North Central,4,Iowa,IA
+MIDWEST,2,West North Central,4,Kansas,KS
+MIDWEST,2,West North Central,4,Minnesota,MN
+MIDWEST,2,West North Central,4,Missouri,MO
+MIDWEST,2,West North Central,4,Nebraska,NE
+MIDWEST,2,West North Central,4,North Dakota,ND
+MIDWEST,2,West North Central,4,South Dakota,SD
+SOUTH,3,South Atlantic,5,Delaware,DE
+SOUTH,3,South Atlantic,5,District of Columbia,DC
+SOUTH,3,South Atlantic,5,Florida,FL
+SOUTH,3,South Atlantic,5,Georgia,GA
+SOUTH,3,South Atlantic,5,Maryland,MD
+SOUTH,3,South Atlantic,5,North Carolina,NC
+SOUTH,3,South Atlantic,5,South Carolina,SC
+SOUTH,3,South Atlantic,5,Virginia,VA
+SOUTH,3,South Atlantic,5,West Virginia,WV
+SOUTH,3,East South Central,6,Alabama,AL
+SOUTH,3,East South Central,6,Kentucky,KY
+SOUTH,3,East South Central,6,Mississippi,MS
+SOUTH,3,East South Central,6,Tennessee,TN
+SOUTH,3,West South Central,7,Arkansas,AR
+SOUTH,3,West South Central,7,Louisiana,LA
+SOUTH,3,West South Central,7,Oklahoma,OK
+SOUTH,3,West South Central,7,Texas,TX
+WEST,4,Mountain,8,Arizona,AZ
+WEST,4,Mountain,8,Colorado,CO
+WEST,4,Mountain,8,Idaho,ID
+WEST,4,Mountain,8,Montana,MT
+WEST,4,Mountain,8,Nevada,NV
+WEST,4,Mountain,8,New,NH
+WEST,4,Mountain,8,Utah,UT
+WEST,4,Mountain,8,Wyoming,WY
+WEST,4,Pacific,9,Alaska,AK
+WEST,4,Pacific,9,California,CA
+WEST,4,Pacific,9,Hawaii,HI
+WEST,4,Pacific,9,Oregon,OR
+WEST,4,Pacific,9,Washington,WA
