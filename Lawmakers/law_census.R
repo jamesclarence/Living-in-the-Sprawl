@@ -45,8 +45,12 @@ rect_r1 <- geom_rect(data = rep1, aes(xmin = xmin_r1, xmax = xmax_r1, ymin = ymi
 rect_r2 <- geom_rect(data = rep2, aes(xmin = xmin_r2, xmax = xmax_r2, ymin = ymin_r2, ymax = ymax_r2), 
                      fill = "red", alpha=0.25, inherit.aes = FALSE)
 
+## Group used from data object
+grp <- group_by(data, congress, year, majority)
+grp_2 <- group_by(data, congress, year, Region)
+
 ## Effectiveness of the Majority Party versus Minority Party
-group_by(data, congress, year, majority) %>%
+grp %>%
     summarise(majority_n = n(), les_majority = sum(les), ratio = (les_majority/majority_n)) %>%
     ggplot(aes(x = year, y = ratio, group = majority)) +
         geom_line() +
@@ -62,25 +66,35 @@ group_by(data, congress, year, majority) %>%
               title = "Legislative Effectiveness of House Majority & Minority Party Members, 1973-2011")
     
 ## Number of members per Region per Congress
-group_by(data, congress, Region) %>%
+grp_2 %>%
     summarise(members=n()) %>%
-    ggplot(aes(x = congress, y = members, group = Region, color = Region)) +
-    geom_line(size = 2, alpha = 4/5) +
-    theme_bw()
+    ggplot(aes(x = year, y = members, group = Region, color = Region)) +
+        geom_line(size = 2, alpha = 4/5) +
+        theme_minimal() +
+        theme(axis.text.x = element_text(angle = 45, hjust = 1),
+              plot.title = element_text(size = 11.5)) +
+        labs (x = "", y = "Members", 
+              title = "Number of House of Representatives Member Per Region, 1973-2011")
+
 
 ## LES by Region from 93-112 Congress
-group_by(data, congress, Region) %>%
+grp_2 %>%
     summarise(les_region = sum(les)) %>%
-    ggplot(aes(x = congress, y = les_region, group = Region, color = Region)) +
+    ggplot(aes(x = year, y = les_region, group = Region, color = Region)) +
         geom_line(size = 2, alpha = 4/5) +
-        theme_classic()   
+        rect_d1 + rect_r1 + rect_d2 + rect_r2 +
+        theme_minimal() +
+        theme(axis.text.x = element_text(angle = 45, hjust = 1),
+              plot.title = element_text(size = 11.5))
 
 ## LES score per region per region's member
-group_by(data, congress, Region) %>%
+grp_2 %>%
     summarise(members=n(), les_region = sum(les), ratio = les_region/members) %>%
-    ggplot(aes(x = congress, y = ratio, group = Region, color = Region)) +
+    ggplot(aes(x = year, y = ratio, group = Region, color = Region)) +
         geom_line(size = 2, alpha = 4/5) +
-        theme_classic()
+        theme_minimal() +
+        theme(axis.text.x = element_text(angle = 45, hjust = 1),
+              plot.title = element_text(size = 11.5))
 
 # Plots Ideas:
     # 1. Democrats & Republicans
@@ -89,14 +103,6 @@ group_by(data, congress, Region) %>%
         # 2b. Democrat & Republicans
     # 3. Boehner vs Pelosi
 
-# Re-ordering factors practice
-
-df <- data.frame(f = 1:4, g = letters[1:4])
-df
-levels(df$g)
-df$g <- factor(df$g, levels = letters[4:1])
-df$g
-df
 
 # 1. Group by Congress (data$congress) and census region (data$Region)
 # 2. Sum each Congress' LES score (data$les) by census region for each year ($year)
