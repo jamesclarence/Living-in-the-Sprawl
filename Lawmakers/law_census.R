@@ -108,32 +108,3 @@ ggplot(nancy_john, aes(x = year, y = les, shape = thomas_name, group = thomas_na
     labs(x = "", y = "Legislative Effectiveness Score",
          title = "Effectiveness of John Boehner and Nancy Pelosi")
 dev.off()
-
-### Part 2
-
-# Part 2, Plot 1: Number of members per Region per Congress
-grp_2 %>%
-    summarise(members=n()) %>%
-    ggplot(aes(x = year, y = members, group = Region, color = Region)) +
-        geom_line(size = 2, alpha = 4/5) +
-        theme_minimal() +
-        theme(axis.text.x = element_text(angle = 45, hjust = 1, face = "bold"),
-              axis.text.y = element_text(face = "bold"),
-              plot.title = element_text(size = 11.5, face = "bold")) +
-        labs(x = "", y = "", 
-              title = "Number of House of Representatives Members Per Region, 1973-2011")
-
-# Part 2, Plot 2: LES score per region per region's member
-grp_2 %>%
-    summarise(members=n(), les_region = sum(les), ratio = les_region/members) %>%
-    ggplot(aes(x = year, y = ratio, group = Region, color = Region)) +
-        geom_line(size = 2, alpha = 3/5) +
-        theme_minimal() +
-        theme(axis.text.x = element_text(angle = 45, hjust = 1, face = "bold"),
-              axis.text.y = element_text(face = "bold"),
-              axis.title.y = element_text(face = "bold", vjust = 1),
-              plot.title = element_text(size = 11.5, face = "bold")) +
-        labs(x = "", y = "LES Score",
-             title = "Average Effectiveness Per Representative in Each Region")
-
-# Part 3, Plot 3: In depth look at South's sub-division
