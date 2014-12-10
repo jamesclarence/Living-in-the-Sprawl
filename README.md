@@ -17,3 +17,9 @@ Instagram feed during the World Cup. He loves the thumbs up pose. Published on J
 **Braves Salary Per Win, 1988-2014** - In the wake of Atlanta Braves' general manager Frank Wren's firing, I create a new metric that "normalizes" a baseball team's salary per win. I compare the value of the salary per win of the Braves since 1988 as compared to an 81-win (.500 winning percentage) team with the same salary. Data from USA Today and Baseball Reference. Published on October 5, 2014: http://jamesclarence.wordpress.com/2014/10/05/frank-wrens-firing-looking-at-the-braves-through-a-new-to-me-metric/
 
 **Nashville Building** - My first attempt making a map in R. I took building permit data for new residences in Metro Nashville from Metro Nashville open data web site, and mapped where those permits are located. Published on November 1, 2014: http://jamesclarence.wordpress.com/2014/11/01/map-quest-nashville-residential-building-permits/
+
+**Lawmakers** - Two entries using data from the new political science book, *Legislative Effectiveness in the United States Congress: The Lawmakers* by Craig Volden and Alan Wiseman. They created a metric to measure legislative effectiveness of House members. The two posts:
+
+1. "Legislative Effectiveness, Part I: Pelosi vs. Boehner" - A look at effectiveness of majority and minority party members, plus comparing the effectiveness of Nancy Pelosi versus John Boehner. Published on November 16, 2014: https://jamesclarence.wordpress.com/2014/11/16/legislative-effectiveness-part-i-pelosi-vs-boehner/
+
+2. "Legislative Effectiveness, Part II: The South" - The effectiveness of congressmembers from the US South. I used US Census Bureau's s designation of regions and divisions, but split one Southern division, South Atlantic, into two divisions. Published on December 8, 2014: https://jamesclarence.wordpress.com/2014/12/08/legislative-effectiveness-part-ii-the-south/
