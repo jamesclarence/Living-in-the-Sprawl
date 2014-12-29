@@ -25,6 +25,7 @@ library(RCurl)
 library(ggplot2)
 library(dplyr)
 library(data.table)
+library(reshape2)
 
 ## 4 Bridges Half Marathon (2013)
 url_4b <- "https://dl.dropboxusercontent.com/u/52479449/Results/4B_ResultsOverall.html"
@@ -49,6 +50,17 @@ setwd("~/Documents/Blog/Living-in-the-Sprawl/How Slow Am I")
 times <- read.csv("times.csv")
 
 times$hms <- as.POSIXct(as.character(times$TIME), format = "%H:%M:%S")
+
+# All Races Distribution
+ggplot(times, aes(x=hms, fill = as.factor(Distance))) +
+    geom_histogram(binwidth = 30, alpha = 0.5, position = "identity") +
+    theme_classic()
+    
+
+ggplot(times, aes(x=hms, fill = as.factor(Distance))) +
+    geom_density(alpha = .5) +
+    theme_classic()
+        
 
 # Half Marathon Distribution
 filter(times, Distance == 13.1) %>%
@@ -112,12 +124,102 @@ half %>%
 
 # Median per Event
 group_by(times, Event) %>%
-    summarise(median = median(hms, na.rm=T))
+    summarise(median = median(hms, na.rm=T)) 
 
-group_by(times, Event) %>%
-    summarise(OutOf = max(PLACE),
-              percentile = (PLACE * 100 / max(PLACE)))
+### Plot 2: Percentile Finish
 
+jay_place <- select(times, Event, Year, Distance, JAY, PLACE) %>%
+    arrange(Year) %>%
+    filter(JAY == "Y") %>%
+    group_by(Event)
 
+event_place <- group_by(times, Event) %>%
+    summarise(OutOf = n())
+
+jay <- inner_join(x = jay_place, y = event_place, by = "Event")
+
+jay_pct <- jay %>%
+    mutate(percentile = round(1 - (PLACE/OutOf),3))
+    
+ggplot(jay_pct, aes(x = Year, y = percentile)) +
+    geom_point(aes(color = Event, size = 10), alpha = .8) +
+    theme_classic() +
+    guides(size = F) +
+    breaks_all +
+    scale_size_continuous(range = range(c(3,10))) +
+    theme(axis.text.x = element_text(face = "bold"),
+          axis.title.x = element_text(face = "bold"),
+          axis.text.y = element_text(face = "bold"),
+          axis.title.y = element_text(face = "bold")) +
+    labs(x = "Year", y = "Percentile Finish")
+
+         
 ### Compare myself with different age groups (hilarious)
     # filter me + ages 50 and over; me + my age and younger
+
+### Plot 3: Compare myself with different age groups
+
+# Ages 50+ and I
+times2 <- read.csv("times.csv", stringsAsFactor = F)
+
+times2$AGE <- as.numeric(times2$AGE)
+times2$hms <- as.POSIXct(as.character(times2$TIME), format = "%H:%M:%S")
+
+# No ages in 4 Bridges
+
+jay50_data <- filter(times2, AGE >= "50" | JAY == "Y")
+jay50_data <- filter(jay50_data, Event != "4 Bridges")
+
+# Need to make new Places based on jay50_data
+jay50_data <- group_by(jay50_data, Event) %>%
+    mutate(place50 = order(hms))
+
+jay50_place <- select(jay50_data, Event, Year, Distance, AGE, JAY, place50) %>%
+    arrange(Year) %>%
+    filter(JAY == "Y") %>%
+    group_by(Event)
+
+event50_place <- group_by(jay50_data, Event) %>%
+    summarise(OutOf = n())
+
+jay50 <- inner_join(x = jay50_place, y = event50_place, by = "Event")
+
+jay50_pct <- jay50 %>%
+    mutate(percentile = round(1 - (place50/OutOf),3))
+
+ggplot(jay50_pct, aes(x = Year, y = percentile)) +
+    geom_point(aes(color = Event, size = 10), alpha = .8) +
+    theme_classic() +
+    guides(size = F) +
+    breaks_all +
+    scale_size_continuous(range = range(c(3,10))) +
+    theme(axis.text.x = element_text(face = "bold"),
+          axis.title.x = element_text(face = "bold"),
+          axis.text.y = element_text(face = "bold"),
+          axis.title.y = element_text(face = "bold")) +
+    labs(x = "Year", y = "Percentile Finish")
+
+# Combine Normal and Age 50 Comparison Percentiles
+jay_all50 <- left_join(x = jay_pct, y = jay50_pct, by = "Event")
+
+# colnames(jay_all50)
+# [1] "Event"        "Year.x"       "Distance.x"   "JAY.x"       
+# [5] "PLACE"        "OutOf.x"      "percentile.x" "Year.y"      
+# [9] "Distance.y"   "AGE"          "JAY.y"        "place50"     
+# [13] "OutOf.y"     "percentile.y"
+
+jay_all50 <- melt(jay_all50, id.vars = c(1:6, 8:13), variable.name = "filter", 
+                  value.name = "percentile")
+
+ggplot(jay_all50, aes(x = filter, y = percentile, group = Event)) +
+    geom_line(aes(color = Event), linetype = "dashed") +
+    geom_point(aes(color = Event, shape = filter, size = 10), alpha = .8) +
+    theme_classic() +
+    guides(size = F) +
+    breaks_all +
+    scale_size_continuous(range = range(c(3,10))) +
+    theme(axis.text.x = element_text(face = "bold"),
+          axis.title.x = element_text(face = "bold"),
+          axis.text.y = element_text(face = "bold"),
+          axis.title.y = element_text(face = "bold")) +
+    labs(x = "All Ages vs. Ages 50+", y = "Percentile Finish")
