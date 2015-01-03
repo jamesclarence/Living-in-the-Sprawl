@@ -90,6 +90,7 @@ breaks_all <- scale_color_discrete(name = "Events",
                                               "Save The Light", "Tom King"))
 
 # All Races
+png("plot1.png", height = 325, width = 575)
 times %>% # Like this one
     group_by(PLACE, JAY, hms) %>%
     ggplot(aes(x = hms, y = PLACE)) +
@@ -97,7 +98,13 @@ times %>% # Like this one
         theme_classic() +
         guides(size=F) +
         labs(x = "Race Time", y = "Place") +
-        breaks_all
+        breaks_all +
+        theme(axis.text.x = element_text(face = "bold"),
+              axis.title.x = element_text(face = "bold"),
+              axis.text.y = element_text(face = "bold"),
+              axis.title.y = element_text(face = "bold"),
+              legend.justification=c(1,0), legend.position=c(1,0))
+dev.off()
 
 # Half Marathon Results
 half <- filter(times, Distance == 13.1)
@@ -139,7 +146,7 @@ event_place <- group_by(times, Event) %>%
 jay <- inner_join(x = jay_place, y = event_place, by = "Event")
 
 jay_pct <- jay %>%
-    mutate(percentile = round(1 - (PLACE/OutOf),3))
+    mutate(percentile = round(100*(1 - (PLACE/OutOf)),1))
     
 ggplot(jay_pct, aes(x = Year, y = percentile)) +
     geom_point(aes(color = Event, size = 10), alpha = .8) +
@@ -185,7 +192,7 @@ event50_place <- group_by(jay50_data, Event) %>%
 jay50 <- inner_join(x = jay50_place, y = event50_place, by = "Event")
 
 jay50_pct <- jay50 %>%
-    mutate(percentile = round(1 - (place50/OutOf),3))
+    mutate(percentile = round(100*(1 - (place50/OutOf)),1))
 
 ggplot(jay50_pct, aes(x = Year, y = percentile)) +
     geom_point(aes(color = Event, size = 10), alpha = .8) +
@@ -218,6 +225,7 @@ ggplot(jay_all50, aes(x = filter, y = percentile, group = Event)) +
     guides(size = F) +
     breaks_all +
     scale_size_continuous(range = range(c(3,10))) +
+    scale_x_discrete(labels=c("All Ages", "Ages 50+"))
     theme(axis.text.x = element_text(face = "bold"),
           axis.title.x = element_text(face = "bold"),
           axis.text.y = element_text(face = "bold"),
