@@ -49,9 +49,9 @@ colnames(woo)
 # [1] "V1"     "V2"     "V3"     "V4"     "V5"     "V7"     "V8"     "V9"
 # [9] "V10"    "V11"    "V12"    "season"
 
-woo <- rename(woo, c("V1" = "school", "V2" = "conf_rec", "V3" = "conf_Win", "V4" = "conf_pf",
+woo <- setnames(woo, c("V1" = "school", "V2" = "conf_rec", "V3" = "conf_Win", "V4" = "conf_pf",
 "V5" = "conf_pa", "V7" = "all_rec", "V8" = "all_win", "V9" = "all_pf",
-"V10" = "all_pa", "V11" = "all_l10", "V12" = "all_streak"))
+"V10" = "all_pa", "V11" = "all_l10", "V12" = "all_streak", "season" = "season"))
 
 # pf = Points For
 # pa = Points Allowed
@@ -62,10 +62,12 @@ woo <- woo %>% # add Wooster column for plotting
 
 woo$conf_Win <- as.numeric(woo$conf_Win)
 woo$conf_pf <- as.numeric(woo$conf_pf)
+woo$conf_pa <- as.numeric(woo$conf_pa)
 
 ### Plots
 
 # Plot 1: Wooster & Other NCAC School Winning %, 2006-2015
+png("plot1.png", height = 325, width = 689)
 ggplot(woo, aes(x = season, y = conf_Win, group = school, color = wooster, size = wooster)) +
     geom_line() +
     scale_y_continuous(breaks = seq(0.5, 1, by = 0.1)) +
@@ -82,26 +84,54 @@ ggplot(woo, aes(x = season, y = conf_Win, group = school, color = wooster, size 
           axis.title.x = element_text(face = "bold"),
           axis.text.y = element_text(face = "bold"),
           plot.title = element_text(face = "bold"))
+dev.off()
 
-# Plot 2: Conference Points Per Game
-woo %>% # don't include 14-15 season
+# Plot 2: Conference Points Scored Per Game
+woo_pf <- woo %>% # don't include 14-15 season
     select(school, conf_pf, season, wooster) %>%
     filter(season != "14-15") %>%
     group_by(season) %>%
     mutate(conf_pfsd = sd(conf_pf), conf_pfmn = mean(conf_pf),
-           conf_pfvar = ((conf_pf - conf_pfmn)/conf_pfsd)) %>%
-    ggplot(aes(x = conf_pf, y = conf_pfvar, color = wooster)) +
-        geom_point() +
-        labs(x = "Points Scored By Season", y = "Distance From Mean",
-             title = "NCAC Conference Season Point Total")
-        theme_minimal() +
-        scale_color_manual(name = "School",
-                           breaks = c("Y", "N"),
-                           labels = c("Wooster", "Other"),
-                           values = c("black", "gold"))
+           conf_pfvar = ((conf_pf - conf_pfmn)/conf_pfsd))
 
-ggplot(woo, aes(x = as.numeric(conf_pf), y = as.numeric(conf_pa), color = wooster)) +
-    geom_point() +
-    scale_x_continuous(breaks = seq(0, 1500, by = 100)) +
-    scale_y_continuous(breaks = seq(0, 1500, by = 100))
+png("plot2.png", height = 325, width = 689)
+ggplot(woo_pf, aes(x = conf_pf, y = conf_pfvar, color = wooster)) +
+    geom_point(size = 3, alpha = 0.8) +
+    guides(size = F) +
+    labs(x = "Points Scored By Season", y = "Standard Deviation",
+         title = "NCAC Conference Season Points Scored, 2006-2014") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(face = "bold"),
+          axis.title.x = element_text(face = "bold"),
+          axis.text.y = element_text(face = "bold"),
+          plot.title = element_text(face = "bold")) +
+    scale_color_manual(name = "School",
+                       breaks = c("Y", "N"),
+                       labels = c("Wooster", "Other"),
+                       values = c("black", "gold"))
+dev.off()
 
+# Plot 3: Conference Points Allowed Per Season
+woo_pa <- woo %>% # don't include 14-15 season
+    select(school, conf_pa, season, wooster) %>%
+    filter(season != "14-15") %>%
+    group_by(season) %>%
+    mutate(conf_pasd = sd(conf_pa), conf_pamn = mean(conf_pa),
+           conf_pavar = ((conf_pa - conf_pamn)/conf_pasd))
+
+png("plot3.png", height = 325, width = 689)
+ggplot(woo_pa, aes(x = conf_pa, y = conf_pavar, color = wooster)) +
+    geom_point(size = 3, alpha = 0.8) +
+    guides(size = F) +
+    labs(x = "Points Allowed By Season", y = "Standard Deviation",
+         title = "NCAC Conference Season Points Allowed, 2006-2014") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(face = "bold"),
+          axis.title.x = element_text(face = "bold"),
+          axis.text.y = element_text(face = "bold"),
+          plot.title = element_text(face = "bold")) +
+    scale_color_manual(name = "School",
+                       breaks = c("Y", "N"),
+                       labels = c("Wooster", "Other"),
+                       values = c("black", "gold"))
+dev.off()
