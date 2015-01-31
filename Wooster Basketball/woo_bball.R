@@ -96,7 +96,8 @@ woo_pf <- woo %>% # don't include 14-15 season
 
 png("plot2.png", height = 325, width = 689)
 ggplot(woo_pf, aes(x = conf_pf, y = conf_pfvar, color = wooster)) +
-    geom_point(size = 3, alpha = 0.8) +
+    geom_point(size = 8, alpha = 0.8) +
+    geom_hline(aes(yintercept = 0), linetype = "dashed") +
     guides(size = F) +
     labs(x = "Points Scored By Season", y = "Standard Deviation",
          title = "NCAC Conference Season Points Scored, 2006-2014") +
@@ -121,7 +122,8 @@ woo_pa <- woo %>% # don't include 14-15 season
 
 png("plot3.png", height = 325, width = 689)
 ggplot(woo_pa, aes(x = conf_pa, y = conf_pavar, color = wooster)) +
-    geom_point(size = 3, alpha = 0.8) +
+    geom_point(size = 8, alpha = 0.8) +
+    geom_hline(aes(yintercept = 0), linetype = "dashed") +
     guides(size = F) +
     labs(x = "Points Allowed By Season", y = "Standard Deviation",
          title = "NCAC Conference Season Points Allowed, 2006-2014") +
