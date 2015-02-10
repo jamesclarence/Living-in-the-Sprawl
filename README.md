@@ -23,3 +23,7 @@ Instagram feed during the World Cup. He loves the thumbs up pose. Published on J
 1. "Legislative Effectiveness, Part I: Pelosi vs. Boehner" - A look at effectiveness of majority and minority party members, plus comparing the effectiveness of Nancy Pelosi versus John Boehner. Published on November 16, 2014: https://jamesclarence.wordpress.com/2014/11/16/legislative-effectiveness-part-i-pelosi-vs-boehner/
 
 2. "Legislative Effectiveness, Part II: The South" - The effectiveness of congressmembers from the US South. I used US Census Bureau's s designation of regions and divisions, but split one Southern division, South Atlantic, into two divisions. Published on December 8, 2014: https://jamesclarence.wordpress.com/2014/12/08/legislative-effectiveness-part-ii-the-south/
+
+**How Slow Am I** Using times from road races I've run the last few years, I graphed just exactly how slow of a runner I am. Published on January 4, 2015: https://jamesclarence.wordpress.com/2015/01/04/how-slow-am-i/
+
+**Wooster Basketball** The College of Wooster Fighting Scots men's basketball team is Atlanta Hawks good. I graph their dominance in the North Coast Athletic Conference. Published on January 31, 2015: https://jamesclarence.wordpress.com/2015/01/31/college-of-wooster-basketball-is-atlanta-hawks-good/
