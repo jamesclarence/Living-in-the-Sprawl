@@ -69,7 +69,7 @@ ggplot(mls_var, aes(x = sal_var)) +
 # Plot: Distribution of MLS Salaries from 2007-2014 ($ Values)
 ggplot(mls_var, aes(x = guaranteedcompensation, y = as.factor(year))) +
     geom_point(color = "dark green", size = 3, alpha = 0.5) +
-    scale_x_log10(breaks = c(10000, 100000, 1000000,
+    scale_x_log10(breaks = c(10000, 50000, 100000, 250000, 1000000,
                              5000000, 10000000), labels = dollar) +
     scale_y_discrete(limits = rev(levels(as.factor(mls_var$year)))) +
     labs(x = "", y = "",
@@ -84,8 +84,8 @@ ggplot(mls_var, aes(x = guaranteedcompensation, y = as.factor(year))) +
 # Another Chart: One or two teams (Seattle, Los Angeles, Toronto)
 filter(mls, club == "LA") %>%
     ggplot(aes(x = guaranteedcompensation, y = as.factor(year))) +
-    geom_point(color = "dark green", size = 3, alpha = 0.75) +
-    scale_x_log10(breaks = c(10000, 100000, 1000000,
+    geom_point(color = "dark blue", size = 3, alpha = 0.75) +
+    scale_x_log10(breaks = c(10000, 50000, 100000, 250000, 1000000,
                              5000000, 10000000), labels = dollar) +
     scale_y_discrete(limits = rev(levels(as.factor(mls_var$year)))) +
     labs(x = "", y = "",
@@ -97,7 +97,9 @@ filter(mls, club == "LA") %>%
           axis.text.y = element_text(face = "bold"),
           axis.title.y = element_text(face = "bold"))
 
-# Average Salary from 2007-2014
+# Median and Average Salary from 2007-2014
+summarise(mls_var, median = median(guaranteedcompensation, na.rm = T),
+          mean = mean(guaranteedcompensation, na.rm = T))
 
 # Players making over a million, 2007-2014
 filter(mls_var, guaranteedcompensation >= 1000000) %>% summarise(count = n())
